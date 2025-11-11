@@ -1311,11 +1311,16 @@ const updateUIWithLabels = () => {
     if (key) {
       const text = t(key);
       if (text && text !== key) {
-        el.textContent = text;
+        // Use innerHTML for elements that may contain HTML (like links)
+        if (el.classList.contains('provider-description') || el.classList.contains('settings-description')) {
+          el.innerHTML = text;
+        } else {
+          el.textContent = text;
+        }
       }
     }
   });
-  
+
   // Update elements with data-i18n-title attribute
   document.querySelectorAll('[data-i18n-title]').forEach((el) => {
     const key = el.getAttribute('data-i18n-title');
@@ -1326,7 +1331,7 @@ const updateUIWithLabels = () => {
       }
     }
   });
-  
+
   // Update elements with data-i18n-placeholder attribute
   document.querySelectorAll('[data-i18n-placeholder]').forEach((el) => {
     const key = el.getAttribute('data-i18n-placeholder');
@@ -1337,38 +1342,38 @@ const updateUIWithLabels = () => {
       }
     }
   });
-  
+
   // Update specific placeholders
   const searchInput = document.getElementById('word-search-input');
   if (searchInput) searchInput.placeholder = t('vocab.search.placeholder');
-  
+
   const sentenceInput = document.getElementById('sentence-input');
   if (sentenceInput) sentenceInput.placeholder = t('scoring.input.placeholder');
-  
+
   // Update button texts
   const searchBtn = document.getElementById('word-search-btn');
   if (searchBtn) searchBtn.textContent = t('vocab.search.button');
-  
+
   const scoreBtn = document.getElementById('score-btn');
   if (scoreBtn) scoreBtn.textContent = t('scoring.input.button');
-  
+
   // Update tab labels
   const vocabTab = document.querySelector('[data-tab="vocab"] .tab-label');
   if (vocabTab) vocabTab.textContent = t('tabs.vocab');
-  
+
   const scoringTab = document.querySelector('[data-tab="scoring"] .tab-label');
   if (scoringTab) scoringTab.textContent = t('tabs.scoring');
-  
+
   // Update window control titles
   const settingsBtn = document.getElementById('settings-btn');
   if (settingsBtn) settingsBtn.title = t('window.settings');
-  
+
   const minimizeBtn = document.getElementById('window-minimize');
   if (minimizeBtn) minimizeBtn.title = t('window.minimize');
-  
+
   const maximizeBtn = document.getElementById('window-maximize');
   if (maximizeBtn) maximizeBtn.title = t('window.maximize');
-  
+
   const closeBtn = document.getElementById('window-close');
   if (closeBtn) closeBtn.title = t('window.close');
 };
@@ -1469,72 +1474,72 @@ const togglePasswordVisibility = (inputEl) => {
 const testConnection = async (provider) => {
   let config = { provider };
   let testButton;
-  
+
   switch (provider) {
     case 'ollama-cloud': {
       const apiKey = els.ollamaCloudApiKey?.value || '';
       const model = els.ollamaCloudModel?.value || 'gpt-oss:20b-cloud';
-      
+
       if (!apiKey) {
-        showToast('Please enter an API key', 'error');
+        showToast(t('toasts.error.apiKeyRequired'), 'error');
         return;
       }
-      
+
       config.ollamaCloud = { apiKey, model };
       testButton = els.testOllamaCloud;
       break;
     }
-    
+
     case 'ollama-local': {
       const host = els.ollamaLocalHost?.value || 'http://localhost:11434';
       const model = els.ollamaLocalModel?.value || 'llama3.2:latest';
-      
+
       config.ollamaLocal = { host, model };
       testButton = els.testOllamaLocal;
       break;
     }
-    
+
     case 'openai': {
       const endpoint = els.openaiEndpoint?.value || 'https://api.openai.com';
       const apiKey = els.openaiApiKey?.value || '';
       const model = els.openaiModel?.value || 'gpt-4o-mini';
-      
+
       if (!apiKey) {
-        showToast('Please enter an API key', 'error');
+        showToast(t('toasts.error.apiKeyRequired'), 'error');
         return;
       }
-      
+
       config.openai = { endpoint, apiKey, model };
       testButton = els.testOpenai;
       break;
     }
-    
+
     default:
-      showToast('Unknown provider', 'error');
+      showToast(t('toasts.error.unknownProvider'), 'error');
       return;
   }
-  
-  const loadingToast = showToast('Testing connection...', 'loading', 0);
+
+  const loadingToast = showToast(t('toasts.info.testingConnection'), 'loading', 0);
   if (testButton) testButton.disabled = true;
-  
+
   try {
     const result = await window.api.invoke('settings:test-connection', config);
-    
+
     hideToast(loadingToast);
-    
+
     if (result.success) {
-      let message = result.message || 'Connection successful!';
+      let message = result.message || t('toasts.success.connectionSuccess');
       if (result.models && result.models.length > 0) {
-        message += ` (${result.models.length} models available)`;
+        message += ` (${t('toasts.success.modelsAvailable', { count: result.models.length })})`;
       }
       showToast(message, 'success');
     } else {
-      showToast(result.message || 'Connection failed', 'error');
+      showToast(result.message || t('toasts.error.connectionFailed'), 'error');
     }
   } catch (error) {
     console.error('[AI Settings] Test connection error:', error);
     hideToast(loadingToast);
-    showToast(error.message || 'Connection failed', 'error');
+    showToast(error.message || t('toasts.error.connectionFailed'), 'error');
   } finally {
     if (testButton) testButton.disabled = false;
   }
@@ -1574,12 +1579,12 @@ const loadAiSettings = async () => {
 };
 
 const saveAiSettings = async () => {
-  const loadingToast = showToast('Saving settings...', 'loading', 0);
-  
+  const loadingToast = showToast(t('toasts.info.savingSettings'), 'loading', 0);
+
   try {
     const provider = els.aiProviderSelect?.value || 'ollama-cloud';
     const config = { provider };
-    
+
     // Add provider-specific settings
     if (provider === 'ollama-cloud') {
       config.ollamaCloud = {
@@ -1598,15 +1603,15 @@ const saveAiSettings = async () => {
         model: els.openaiModel?.value || 'gpt-4o-mini'
       };
     }
-    
+
     await window.api.invoke('settings:save-ai-config', config);
-    
+
     hideToast(loadingToast);
-    showToast('Settings saved successfully!', 'success');
+    showToast(t('toasts.success.settingsSaved'), 'success');
   } catch (error) {
     console.error('[AI Settings] Save error:', error);
     hideToast(loadingToast);
-    showToast(error.message || 'Failed to save settings', 'error');
+    showToast(error.message || t('toasts.error.saveFailed'), 'error');
   }
 };
 
